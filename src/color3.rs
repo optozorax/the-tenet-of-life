@@ -47,7 +47,7 @@ impl Color3 {
 }
 
 #[derive(Debug, Clone, Hash, Copy, Ord, PartialOrd, Eq, PartialEq)]
-pub struct Square3(u8);
+pub struct Square3(pub u8);
 
 #[derive(Debug, Clone, Hash, Ord, PartialOrd, Eq, PartialEq)]
 pub struct SquareColors3(pub [Color3; 4]);

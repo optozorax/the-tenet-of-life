@@ -3,7 +3,6 @@ use std::convert::TryInto;
 use std::convert::TryFrom;
 use fntools::value::*;
 use crate::color3::*;
-use crate::color3;
 
 #[derive(Debug, Clone, Hash, Copy, Ord, PartialOrd, Eq, PartialEq)]
 pub struct Color2(bool);
