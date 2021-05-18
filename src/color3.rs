@@ -163,4 +163,8 @@ impl Rules3 {
 				}
 			})
 	}
+
+	pub fn to_simple_vec(&self) -> Vec<usize> {
+		self.pairs().into_iter().map(|(_, value)| value.0.into()).collect::<Vec<_>>()
+	}
 }

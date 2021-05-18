@@ -122,6 +122,15 @@ impl SquareColors2 {
 pub struct Rules2(Vec<Square2>);
 
 impl Rules2 {
+	pub fn new(vec: &[u8]) -> Self {
+		vec
+			.iter()
+			.enumerate()
+			.map(|(index, value)| (Square2::new(index.try_into().unwrap()), Square2::new(*value)))
+			.collect::<Vec<_>>()
+			.apply(Rules2::from_pairs)
+	}
+
 	pub fn is_correct(&self) -> bool {
 		self.0.len() == 16 &&
 			{ 
@@ -161,6 +170,28 @@ impl Rules2 {
 					panic!("Pairs2 is incorrect");
 				}
 			})
+	}
+
+	pub fn to_simple_vec(&self) -> Vec<usize> {
+		self.pairs().into_iter().map(|(_, value)| value.0.into()).collect::<Vec<_>>()
+	}
+
+	pub fn inverted_step1(&self) -> Self {
+		self
+			.pairs()
+			.into_iter()
+			.map(|(pos, value)| (pos, value.invert()))
+			.collect::<Vec<_>>()
+			.apply(Rules2::from_pairs)
+	}
+
+	pub fn inverted_step2(&self) -> Self {
+		self
+			.pairs()
+			.into_iter()
+			.map(|(pos, value)| (pos.invert(), value))
+			.collect::<Vec<_>>()
+			.apply(Rules2::from_pairs)
 	}
 }
 
